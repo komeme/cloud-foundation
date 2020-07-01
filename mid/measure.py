@@ -1,6 +1,6 @@
 import time
 from argparse import ArgumentParser
-import pandas as pd
+import csv
 
 NUM_SAMPLES = 10
 SAMPLE_ITERATIONS = [10 ** i for i in range(8)]
@@ -39,6 +39,7 @@ def with_measure(func):
 
 
 def measure_without_io(out: str, num_sample: int):
+    print('WITHOUT IO')
     data = []
     for _ in range(num_sample):
         results = []
@@ -49,8 +50,10 @@ def measure_without_io(out: str, num_sample: int):
 
         data.append(results)
 
-    d = pd.DataFrame(data, columns=SAMPLE_ITERATIONS)
-    d.to_csv(out)
+    with open(out, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(SAMPLE_ITERATIONS)
+        writer.writerows(data)
 
 
 def measure_with_io(out: str, num_sample: int):
@@ -66,8 +69,10 @@ def measure_with_io(out: str, num_sample: int):
 
         data.append(results)
 
-    d = pd.DataFrame(data, columns=SAMPLE_ITERATIONS_IO)
-    d.to_csv(out)
+    with open(out, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(SAMPLE_ITERATIONS)
+        writer.writerows(data)
 
 
 def main():
