@@ -71,7 +71,7 @@ def measure_with_io(out: str, num_sample: int):
 
     with open(out, 'w') as f:
         writer = csv.writer(f)
-        writer.writerow(SAMPLE_ITERATIONS)
+        writer.writerow(SAMPLE_ITERATIONS_IO)
         writer.writerows(data)
 
 
