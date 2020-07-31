@@ -4,12 +4,18 @@
     const L = 1000000000
 
     const main = () => {
+
+        const res = []
+
         for (let i = 0; i < N; i++) {
-            console.log(withTime(() => {
-                // fib(M)
-                addMany(L)
-            }))
+            const t = withTime(() => {
+                fib(M)
+                // addMany(L)
+            })
+            res.push(t)
         }
+
+        console.log(res)
     }
 
     const withTime = (fn) => {
