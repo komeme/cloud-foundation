@@ -28,8 +28,8 @@ def plot(src: str):
 
     ax.bar(x=data.columns, height=mean, yerr=std, capsize=5)
 
-    plt.legend()
-    plt.show()
+    # plt.legend()
+    # plt.show()
 
 
 def main():
